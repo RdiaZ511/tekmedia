@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formación Estratégica | Desarrollo de Talento Humano</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastel: '#D4E4F7',
+                        royal: '#1393fb',
+                        orange: '#FF5E00',
+                        darkText: '#1E293B',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --shadow: rgba(19, 35, 90, 0.50);
+            --border: rgba(19, 35, 90, 0.50);
+        }
+        body {
+            background-color: var(--bg);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: #1E293B;
+            scroll-behavior: smooth;
+        }
+        /* Soft Elevation Classes */
+        .neu {
+            background: var(--bg);
+            box-shadow: 0 4px 12px var(--shadow);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+        }
+        .neu-sm {
+            background: var(--bg);
+            box-shadow: 0 2px 8px var(--shadow);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+        .neu-inset {
+            background: #F8FAFC;
+            box-shadow: inset 0 2px 4px rgba(37, 81, 214, 0.09);
+            border: 1px solid rgba(37, 81, 214, 0.12);
+            border-radius: 16px;
+        }
+        .btn-neu {
+            background: var(--bg);
+            box-shadow: 0 2px 8px var(--shadow);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: all 0.2s ease;
+        }
+        .btn-neu:hover {
+            box-shadow: 0 4px 12px rgba(37, 81, 214, 0.18);
+            border-color: rgba(37, 81, 214, 0.3);
+        }
+        .btn-neu:active {
+            box-shadow: inset 0 2px 4px rgba(37, 81, 214, 0.15);
+        }
+        .btn-solid {
+            background: linear-gradient(145deg, #ff6b00, #e65500);
+            box-shadow: 0 4px 12px rgba(255, 94, 0, 0.2);
+            border-radius: 16px;
+            transition: all 0.2s ease;
+            color: white;
+            font-weight: 600;
+        }
+        .btn-solid:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 94, 0, 0.3);
+        }
+        .icon-circle {
+            background: #F8FAFC;
+            box-shadow: inset 0 2px 4px rgba(37, 81, 214, 0.12);
+            border: 1px solid rgba(37, 81, 214, 0.15);
+            border-radius: 50%;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-content.open {
+            max-height: 500px;
+        }
+        .text-royal { color: #2551D6; }
+        .text-orange { color: #FF5E00; }
+        .bg-royal { background-color: #2551D6; }
+        .bg-orange { background-color: #FF5E00; }
+        .bg-pastel-soft { background-color: #F0F6FF; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 px-4 py-4 bg-white/90 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto flex justify-between items-center neu-sm px-6 py-3">
+            <div class="flex items-center space-x-2">
+                <!-- <div class="w-10 h-10 bg-royal rounded-full flex items-center justify-center text-white font-bold text-xl">T</div>
+                <span class="text-xl font-bold text-royal tracking-tight">Tek<span class="text-orange">Media</span></span>
+                -->
+                <img src="images/tekmediaancho.png" alt="Icono" class="w-40 h-10 object-contain">
+            </div>
+            <div class="hidden md:flex space-x-8 font-medium text-gray-700">
+                <a href="#perfil" class="hover:text-royal transition">Perfil</a>
+                <a href="#empresas" class="hover:text-royal transition">Empresas</a>
+                <a href="#experiencias" class="hover:text-royal transition">Experiencias</a>
+                <a href="#catalogo" class="hover:text-royal transition">Cursos</a>
+            </div>
+            <a href="#contacto" class="btn-solid px-5 py-2 text-sm hidden md:block">Contacto</a>
+            <button id="mobile-menu-btn" class="md:hidden text-royal text-2xl"><i class="fas fa-bars"></i></button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 neu-sm p-4 flex flex-col space-y-4 text-center font-medium">
+            <a href="#perfil" class="hover:text-royal">Perfil</a>
+            <a href="#empresas" class="hover:text-royal">Empresas</a>
+            <a href="#experiencias" class="hover:text-royal">Experiencias</a>
+            <a href="#catalogo" class="hover:text-royal">Cursos</a>
+            <a href="#contacto" class="btn-solid px-5 py-2 text-sm inline-block">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="pt-32 pb-20 px-4">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6 items-center justify-center">
+                <span class="inline-block px-4 py-1 neu-sm text-royal font-semibold text-sm tracking-wide">FORMACIÓN PERSONAL DIRECTA</span>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-darkText leading-tight">
+                    Potencie el capital humano de su <span class="text-royal">organización</span>.
+                </h1>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    Cursos cortos de formación personal diseñados con rigor metodológico para maximizar el auto-liderazgo y el rendimiento.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#catalogo" class="btn-solid px-8 py-3 text-lg">Ver Catálogo</a>
+                    <a href="#perfil" class="btn-neu px-8 py-3 text-lg font-semibold text-royal">Mi Perfil</a>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <div class="neu p-8 w-72 h-72 flex items-center justify-center relative">
+                    <img src="images/logo.png" alt="Icono" class="w-120 h-120 object-contain">
+                    <!-- <div class="icon-circle w-48 h-48 flex items-center justify-center">
+                        
+                         <i class="fas fa-chart-line text-6xl text-royal"></i> 
+                    </div> -->
+                    <div class="absolute -top-4 -right-4 neu-sm p-3 bg-orange text-white rounded-full">
+                        <i class="fas fa-award text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- PERFIL PROFESIONAL -->
+    <section id="perfil" class="py-20 px-4 bg-pastel-soft">
+        <div class="max-w-6xl mx-auto neu p-8 md:p-12">
+            <div class="grid md:grid-cols-3 gap-10 items-center">
+                <div class="flex justify-center">
+                    <div class="neu p-3 w-72 h-72 flex items-center justify-center relative">
+                    <!-- <div class="neu-inset w-56 h-56 rounded-full flex items-center justify-center"> -->
+                        <img src="images/rostro2.jpeg" alt="Icono" class="w-50 h-50 object-contain">
+                        <!-- <i class="fas fa-user-tie text-7xl text-royal"></i> -->
+                    </div>
+                </div>
+                <div class="md:col-span-2 space-y-4">
+                    <h2 class="text-3xl font-bold text-royal">Perfil Profesional</h2>
+                    <p class="text-gray-700 leading-relaxed text-lg">
+                        Con más de 15 años de experiencia en desarrollo organizacional y formación ejecutiva, mi enfoque se centra en la transferencia de conocimientos prácticos y medibles. He diseñado e impartido programas de formación para más de 200 empresas, especializándome en cerrar brechas de competencia blanda y endurecer el liderazgo estratégico.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+                        <div class="neu-sm p-4 text-center">
+                            <div class="text-3xl font-bold text-orange">+200</div>
+                            <div class="text-sm text-gray-600">Empresas</div>
+                        </div>
+                        <div class="neu-sm p-4 text-center">
+                            <div class="text-3xl font-bold text-orange">+5K</div>
+                            <div class="text-sm text-gray-600">Profesionales</div>
+                        </div>
+                        <div class="neu-sm p-4 text-center">
+                            <div class="text-3xl font-bold text-orange">98%</div>
+                            <div class="text-sm text-gray-600">Satisfacción</div>
+                        </div>
+                        <div class="neu-sm p-4 text-center">
+                            <div class="text-3xl font-bold text-orange">15+</div>
+                            <div class="text-sm text-gray-600">Años Exp.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPORTUNIDADES PARA EMPRESAS -->
+    <section id="empresas" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-royal">Valor Corporativo</h2>
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Oportunidades tangibles que su empresa obtiene al integrar nuestros programas de formación en su plan de desarrollo anual.</p>
+        </div>
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+            <div class="neu p-8 text-center space-y-4 hover:scale-[1.02] transition-transform">
+                <div class="icon-circle w-16 h-16 mx-auto flex items-center justify-center">
+                    <i class="fas fa-rocket text-2xl text-orange"></i>
+                </div>
+                <h3 class="text-xl font-bold text-royal">Aumento de Productividad</h3>
+                <p class="text-gray-600">Optimización de procesos individuales y reduction de tiempos muertos mediante técnicas de autogestión y enfoque.</p>
+            </div>
+            <div class="neu p-8 text-center space-y-4 hover:scale-[1.02] transition-transform">
+                <div class="icon-circle w-16 h-16 mx-auto flex items-center justify-center">
+                    <i class="fas fa-users-cog text-2xl text-orange"></i>
+                </div>
+                <h3 class="text-xl font-bold text-royal">Clima Laboral Óptimo</h3>
+                <p class="text-gray-600">Mejora sustancial en la comunicación interna, resolución de conflictos y cohesión de los equipos multidisciplinarios.</p>
+            </div>
+            <div class="neu p-8 text-center space-y-4 hover:scale-[1.02] transition-transform">
+                <div class="icon-circle w-16 h-16 mx-auto flex items-center justify-center">
+                    <i class="fas fa-shield-alt text-2xl text-orange"></i>
+                </div>
+                <h3 class="text-xl font-bold text-royal">Retención de Talento</h3>
+                <p class="text-gray-600">La inversión en formación continua incrementa el sentido de pertenencia y reduce la rotación de personal clave.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCIAS / CASOS DE ÉXITO -->
+    <section id="experiencias" class="py-20 px-4 bg-pastel-soft">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-royal">Experiencias y Casos de Éxito</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Resultados documentados de nuestra trayectoria dictando cursos de formación personal.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="neu p-8 space-y-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="icon-circle w-12 h-12 flex items-center justify-center">
+                            <i class="fas fa-building text-xl text-royal"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Sector Financiero</h4>
+                            <p class="text-sm text-gray-500">Programa de Liderazgo Ágil</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"Tras la implementación del curso, nuestro departamento de atención al cliente redujo los tiempos de resolución de quejas en un 34%. La metodología práctica permitió una aplicación inmediata en el piso de trabajo."</p>
+                    <div class="flex text-orange">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="neu p-8 space-y-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="icon-circle w-12 h-12 flex items-center justify-center">
+                            <i class="fas fa-industry text-xl text-royal"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Sector Manufactura</h4>
+                            <p class="text-sm text-gray-500">Gestión del Tiempo y Estrés</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"La capacitación transformó la dinámica de nuestros supervisores de planta. Pasamos de un enfoque reactivo a uno proactivo, disminuyendo los incidentes de seguridad laboral derivados por fatiga y estrés."</p>
+                    <div class="flex text-orange">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATÁLOGO DE CURSOS -->
+    <section id="catalogo" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-royal">Catálogo de Formación</h2>
+                <p class="text-gray-600 mt-4">Cursos cortos de alta intensidad. Haga clic en cada módulo para ver el contenido programático.</p>
+            </div>
+            
+            <div class="space-y-6" id="accordion-container">
+                <!-- Curso 1 -->
+                <div class="neu overflow-hidden">
+                    <button class="accordion-btn w-full p-6 flex justify-between items-center text-left" onclick="toggleAccordion(this)">
+                        <div class="flex items-center space-x-4">
+                            <div class="icon-circle w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-chess-king text-xl text-orange"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-royal">Liderazgo Estratégico y Toma de Decisiones</h3>
+                                <p class="text-sm text-gray-500">Duración: 16 horas | 4 Sesiones</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-royal transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content px-6 pb-6">
+                        <div class="neu-inset p-6 space-y-3">
+                            <h4 class="font-bold text-orange">Contenido Programático:</h4>
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li>Estilos de liderazgo situacional y adaptabilidad.</li>
+                                <li>Modelos de toma de decisiones bajo incertidumbre.</li>
+                                <li>Inteligencia emocional aplicada a la gestión de equipos.</li>
+                                <li>Taller práctico: Simulación de crisis corporativa.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso 2 -->
+                <div class="neu overflow-hidden">
+                    <button class="accordion-btn w-full p-6 flex justify-between items-center text-left" onclick="toggleAccordion(this)">
+                        <div class="flex items-center space-x-4">
+                            <div class="icon-circle w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-comments text-xl text-orange"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-royal">Comunicación Efectiva y Oratoria Corporativa</h3>
+                                <p class="text-sm text-gray-500">Duración: 12 horas | 3 Sesiones</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-royal transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content px-6 pb-6">
+                        <div class="neu-inset p-6 space-y-3">
+                            <h4 class="font-bold text-orange">Contenido Programático:</h4>
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li>Estructura de mensajes de alto impacto (Método Piramidal).</li>
+                                <li>Lenguaje no verbal y manejo del espacio escénico.</li>
+                                <li>Técnicas de persuasión y negociación verbal.</li>
+                                <li>Grabación y análisis de presentaciones en vídeo.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso 3 -->
+                <div class="neu overflow-hidden">
+                    <button class="accordion-btn w-full p-6 flex justify-between items-center text-left" onclick="toggleAccordion(this)">
+                        <div class="flex items-center space-x-4">
+                            <div class="icon-circle w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-clock text-xl text-orange"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-royal">Gestión del Tiempo y Productividad Personal</h3>
+                                <p class="text-sm text-gray-500">Duración: 8 horas | 2 Sesiones</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-royal transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content px-6 pb-6">
+                        <div class="neu-inset p-6 space-y-3">
+                            <h4 class="font-bold text-orange">Contenido Programático:</h4>
+                            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                <li>Matriz de Eisenhower y priorización de tareas.</li>
+                                <li>Eliminación de ladrones de tiempo y microgestión.</li>
+                                <li>Técnicas de enfoque profundo (Deep Work).</li>
+                                <li>Diseño de un sistema de organización personal.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACTO -->
+    <footer id="contacto" class="py-16 px-4 mt-10">
+        <div class="max-w-4xl mx-auto neu p-10 text-center space-y-6">
+            <h2 class="text-3xl font-bold text-royal">Inicie su Programa de Formación</h2>
+            <p class="text-gray-600 max-w-xl mx-auto">Solicite una consultoría gratuita para diseñar el programa a la medida de las necesidades de su empresa.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6 pt-4">
+                <a href="mailto:contacto@talentum.com" class="btn-solid px-8 py-3 flex items-center justify-center space-x-2">
+                    <i class="fas fa-envelope"></i>
+                    <span>contacto@talentum.com</span>
+                </a>
+                <a href="tel:+000000000" class="btn-neu px-8 py-3 flex items-center justify-center space-x-2 text-royal font-semibold">
+                    <i class="fas fa-phone"></i>
+                    <span>+00 000 000 000</span>
+                </a>
+            </div>
+            <div class="pt-8 border-t border-gray-200 mt-8">
+                <p class="text-sm text-gray-500">&copy; 2026 Tek Media. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Accordion Logic
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i.fa-chevron-down');
+            
+            // Close others (optional, for strict accordion behavior)
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                if (item !== content) {
+                    item.classList.remove('open');
+                    item.previousElementSibling.querySelector('i.fa-chevron-down').style.transform = 'rotate(0deg)';
+                }
+            });
+
+            content.classList.toggle('open');
+            if (content.classList.contains('open')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+</body>
+</html>
